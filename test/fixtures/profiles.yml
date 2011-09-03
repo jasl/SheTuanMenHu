@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  name: MyString
+  birthday: 2011-09-03
+  mobile: MyString
+  qq: MyString
+  email: MyString
+  gender: MyString
+  number: MyString
+  school: MyString
+  faculty: MyString
+  profession: MyString
+  resume: MyText
+
+two:
+  user: 
+  name: MyString
+  birthday: 2011-09-03
+  mobile: MyString
+  qq: MyString
+  email: MyString
+  gender: MyString
+  number: MyString
+  school: MyString
+  faculty: MyString
+  profession: MyString
+  resume: MyText
