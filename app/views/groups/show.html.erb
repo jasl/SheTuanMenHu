@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @group.name %>
+</p>
+
+<p>
+  <b>School:</b>
+  <%= @group.school %>
+</p>
+
+<p>
+  <b>Slogan:</b>
+  <%= @group.slogan %>
+</p>
+
+<p>
+  <b>Proclaim:</b>
+  <%= @group.proclaim %>
+</p>
+
+<p>
+  <b>Introduction:</b>
+  <%= @group.introduction %>
+</p>
+
+<p>
+  <b>Is audited:</b>
+  <%= @group.is_audited %>
+</p>
+
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>

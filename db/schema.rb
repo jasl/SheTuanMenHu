@@ -11,7 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110903122651) do
+ActiveRecord::Schema.define(:version => 20110907051717) do
+
+  create_table "contents", :force => true do |t|
+    t.integer  "group_id"
+    t.string   "title"
+    t.string   "author"
+    t.string   "source"
+    t.text     "body"
+    t.boolean  "allow_comment"
+    t.boolean  "state"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contents", ["group_id"], :name => "index_contents_on_group_id"
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.string   "school"
+    t.string   "slogan"
+    t.string   "proclaim"
+    t.string   "introduction"
+    t.boolean  "is_audited"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"

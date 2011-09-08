@@ -1,5 +1,10 @@
 Website::Application.routes.draw do
 
+  resources :groups do
+    resources :articles
+    resources :pages
+  end
+
   resources :profiles
   resources :users
 
