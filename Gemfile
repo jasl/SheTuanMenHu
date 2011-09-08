@@ -11,6 +11,7 @@ gem 'sqlite3'
 gem 'authlogic'
 
 gem 'ckeditor'
+gem 'paperclip'
 
 # Gems used only for assets and not required
 # in production environments by default.
