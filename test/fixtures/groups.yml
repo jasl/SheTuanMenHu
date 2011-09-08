@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  school: MyString
+  slogan: MyString
+  proclaim: MyString
+  introduction: MyString
+  is_audited: 
+
+two:
+  name: MyString
+  school: MyString
+  slogan: MyString
+  proclaim: MyString
+  introduction: MyString
+  is_audited: 
