@@ -1,7 +1,7 @@
 class CreateMembers < ActiveRecord::Migration
   def change
     create_table :members do |t|
-      t.int :authority
+      t.integer :authority
       t.references :profile
       t.references :job
       t.references :team
