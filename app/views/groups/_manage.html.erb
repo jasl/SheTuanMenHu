@@ -1,0 +1,19 @@
+<%= form_for(@group) do |f| %>
+  <%= render 'shared/error', :obj => @group %>
+
+  <div class="field">
+    <%= f.label :slogan %><br />
+    <%= f.text_field :slogan %>
+  </div>
+  <div class="field">
+    <%= f.label :proclaim %><br />
+    <%= f.text_field :proclaim %>
+  </div>
+  <div class="field">
+    <%= f.label :introduction %><br />
+    <%= f.text_field :introduction %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -26,6 +26,7 @@ class PagesController < ApplicationController
   def new
     @page = Page.new
     @page.author = current_user.profile.name
+    @url = group_pages_path
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @page }
@@ -35,6 +36,7 @@ class PagesController < ApplicationController
   # GET /pages/1/edit
   def edit
     @page = Page.find(params[:id])
+    @url = group_page_path @page.group_id, @page.id
   end
 
   # POST /pages
@@ -46,7 +48,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to group_page_url, notice: 'Page was successfully created.' }
+        format.html { redirect_to group_page_path, notice: 'Page was successfully created.' }
         format.json { render json: @page, status: :created, location: @content }
       else
         format.html { render action: "new" }
@@ -62,7 +64,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
-        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
+        format.html { redirect_to redirect_back_or(group_pages_path), notice: 'Page was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -78,7 +80,7 @@ class PagesController < ApplicationController
     @page.destroy
 
     respond_to do |format|
-      format.html { redirect_to group_article_url }
+      format.html { redirect_to group_pages_url }
       format.json { head :ok }
     end
   end

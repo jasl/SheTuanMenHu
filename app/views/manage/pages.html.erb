@@ -1,0 +1,35 @@
+<h1>Listing pages</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Source</th>
+    <th>Body</th>
+    <th>Allow comment</th>
+    <th>Type</th>
+    <th>State</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pages.each do |page| %>
+  <tr>
+    <td><%= page.title %></td>
+    <td><%= page.author %></td>
+    <td><%= page.source %></td>
+    <td><%= page.body %></td>
+    <td><%= page.allow_comment %></td>
+    <td><%= page.type %></td>
+    <td><%= page.state %></td>
+    <td><%= link_to 'Show', group_page_path(page.group_id,page) %></td>
+    <td><%= link_to 'Edit', edit_group_page_path(page.group_id,page) %></td>
+    <td><%= link_to 'Destroy', group_page_path(page.group_id,page), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Page', new_group_page_path(@group) %>

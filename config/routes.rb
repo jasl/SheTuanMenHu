@@ -3,6 +3,13 @@ Website::Application.routes.draw do
   resources :groups do
     resources :articles
     resources :pages
+
+    collection do
+        match ":id/manage/articles" => 'manage#articles', :as => :manage_articles
+        match ":id/manage/pages" => 'manage#pages', :as => :manage_pages
+        match ":id/manage/" => 'manage#index', :as => :manage
+        match ":id/manage/control" => 'manage#control', :as => :manage_control
+    end
   end
 
   resources :profiles

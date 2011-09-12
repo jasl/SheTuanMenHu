@@ -61,7 +61,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+        format.html { redirect_to redirect_back_or(@group), notice: 'Group was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

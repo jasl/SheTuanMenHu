@@ -11,6 +11,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @groups.each do |group| %>
@@ -23,6 +24,7 @@
     <td><%= group.is_audited %></td>
     <td><%= link_to 'Show', group %></td>
     <td><%= link_to 'Edit', edit_group_path(group) %></td>
+    <td><%= link_to 'Manage', manage_groups_url(group) %></td>
   </tr>
 <% end %>
 </table>

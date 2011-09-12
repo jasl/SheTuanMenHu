@@ -1,5 +1,5 @@
 <%= javascript_include_tag "/javascripts/ckeditor/ckeditor.js" %>
-<%= form_for @article, :url => group_articles_path do |f| %>
+<%= form_for @article, :url => @url do |f| %>
   <%= render 'shared/error', :obj => @article %>
 
   <div class="field">
@@ -16,7 +16,7 @@
   </div>
   <div class="field">
     <%= f.label :body %><br />
-    <%= cktext_area_tag("body", "Ckeditor", :input_html => {:cols => 10, :rows => 20}) %>
+    <%= cktext_area_tag("article[body]", @article.body, :input_html => {:cols => 10, :rows => 20}) %>
   </div>
   <div class="field">
     <%= f.label :allow_comment %><br />

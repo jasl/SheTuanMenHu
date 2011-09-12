@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  authority: 
+  profile: 
+  job: 
+  team: 
+  group: 
+  is_audited: false
+
+two:
+  authority: 
+  profile: 
+  job: 
+  team: 
+  group: 
+  is_audited: false
