@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110908163157) do
+ActiveRecord::Schema.define(:version => 20110912183529) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -53,6 +53,33 @@ ActiveRecord::Schema.define(:version => 20110908163157) do
     t.datetime "updated_at"
   end
 
+  create_table "jobs", :force => true do |t|
+    t.string   "name"
+    t.integer  "team_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "jobs", ["group_id"], :name => "index_jobs_on_group_id"
+  add_index "jobs", ["team_id"], :name => "index_jobs_on_team_id"
+
+  create_table "members", :force => true do |t|
+    t.integer  "authority"
+    t.integer  "profile_id"
+    t.integer  "job_id"
+    t.integer  "team_id"
+    t.integer  "group_id"
+    t.boolean  "is_audited"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "members", ["group_id"], :name => "index_members_on_group_id"
+  add_index "members", ["job_id"], :name => "index_members_on_job_id"
+  add_index "members", ["profile_id"], :name => "index_members_on_profile_id"
+  add_index "members", ["team_id"], :name => "index_members_on_team_id"
+
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -71,6 +98,15 @@ ActiveRecord::Schema.define(:version => 20110908163157) do
   end
 
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teams", ["group_id"], :name => "index_teams_on_group_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",              :null => false

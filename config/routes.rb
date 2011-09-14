@@ -27,6 +27,8 @@ Website::Application.routes.draw do
   get '/password' => 'users#index'
   #profile
   get '/my_profile' => 'profiles#index'
+  #apply a protal
+  get '/apply' => 'groups#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

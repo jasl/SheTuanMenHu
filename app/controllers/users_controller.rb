@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     respond_to do |format|
-      if @user.save
+      if @user.save and Profile.create! :user_id => @user.id
         format.html { redirect_to root_path, notice: 'Registration successfully.' }
         format.json { render json: @user, status: :created, location: @user }
       else
