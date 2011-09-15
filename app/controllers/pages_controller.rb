@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_filter :require_publisher, :except => [:show, :index]
+
   # GET /pages
   # GET /pages.json
   def index
@@ -45,10 +47,11 @@ class PagesController < ApplicationController
     @page = Page.new(params[:page])
 
     @page.group_id = params[:group_id]
+    @page.allow_comment=false
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to group_page_path, notice: 'Page was successfully created.' }
+        format.html { redirect_to group_page_path(@page.group_id, @page.id), notice: 'Page was successfully created.' }
         format.json { render json: @page, status: :created, location: @content }
       else
         format.html { render action: "new" }
@@ -64,7 +67,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
-        format.html { redirect_to redirect_back_or(group_pages_path), notice: 'Page was successfully updated.' }
+        format.html { redirect_to group_pages_path(@page.group_id, @page), notice: 'Page was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

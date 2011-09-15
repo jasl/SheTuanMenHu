@@ -1,4 +1,8 @@
 class ManageController < ApplicationController
+  before_filter :require_login
+  before_filter :require_publisher
+  before_filter :require_admin, :only => [:control]
+
   def articles
     @articles = Article.all(:conditions => ['group_id = ?', params[:id]])
     @group = params[:id]

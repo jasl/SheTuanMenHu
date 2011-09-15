@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  before_filter :require_login
+
   # GET /profiles
   # GET /profiles.json
   def index
@@ -10,7 +12,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-=begin
   # GET /profiles/1
   # GET /profiles/1.json
   def show
@@ -21,7 +22,6 @@ class ProfilesController < ApplicationController
       format.json { render json: @profile }
     end
   end
-=end
 
   # GET /profiles/new
   # GET /profiles/new.json
@@ -59,7 +59,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.update_attributes(params[:profile])
-        format.html { redirect_to redirect_back_or(profiles_path), notice: 'Profile was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Profile was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "index" }

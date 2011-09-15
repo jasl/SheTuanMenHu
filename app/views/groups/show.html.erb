@@ -25,11 +25,6 @@
   <%= @group.introduction %>
 </p>
 
-<p>
-  <b>Is audited:</b>
-  <%= @group.is_audited %>
-</p>
-
 <div>
   <p>Tasks:</p>
   <ul>
@@ -37,6 +32,3 @@
     <li><%= link_to 'Show pages', group_pages_path(@group) %></li>
   </ul>
 </div>
-
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>

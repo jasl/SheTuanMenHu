@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_filter :require_admin, :only => [:edit, :update]
   # GET /groups
   # GET /groups.json
   def index
@@ -63,7 +64,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
-        format.html { redirect_to redirect_back_or(@group), notice: 'Group was successfully updated.' }
+        format.html { redirect_to manage_groups_url @group.id, notice: 'Group was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

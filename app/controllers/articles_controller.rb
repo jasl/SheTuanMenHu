@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_filter :require_publisher, :except => [:show, :index]
+
   # GET /articles
   # GET /articles.json
   def index
@@ -26,7 +28,7 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     @article.author = current_user.profile.name
-    @url = group_pages_path
+    @url = group_articles_path
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @article }
@@ -36,7 +38,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = Article.find(params[:id])
-    @url = group_page_path @article.group_id, @article
+    @url = group_article_path @article.group_id, @article
   end
 
   # POST /articles
@@ -48,7 +50,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to group_article_path, notice: 'Article was successfully created.' }
+        format.html { redirect_to group_article_path(@article.group_id, @article.id), notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
       else
         format.html { render action: "new" }
@@ -64,7 +66,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.html { redirect_to group_article_path(@article.group_id, @article.id), notice: 'Article was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

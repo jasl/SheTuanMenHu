@@ -11,16 +11,8 @@
     <%= f.text_field :author %>
   </div>
   <div class="field">
-    <%= f.label :source %><br />
-    <%= f.text_field :source %>
-  </div>
-  <div class="field">
     <%= f.label :body %><br />
     <%= cktext_area_tag("article[body]", @article.body, :input_html => {:cols => 10, :rows => 20}) %>
-  </div>
-  <div class="field">
-    <%= f.label :allow_comment %><br />
-    <%= f.check_box :allow_comment %>
   </div>
   <div class="field">
     <%= f.label :state %><br />

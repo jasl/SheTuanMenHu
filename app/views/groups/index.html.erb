@@ -4,12 +4,6 @@
   <tr>
     <th>Name</th>
     <th>School</th>
-    <th>Slogan</th>
-    <th>Proclaim</th>
-    <th>Introduction</th>
-    <th>Is audited</th>
-    <th></th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -18,12 +12,7 @@
   <tr>
     <td><%= group.name %></td>
     <td><%= group.school %></td>
-    <td><%= group.slogan %></td>
-    <td><%= group.proclaim %></td>
-    <td><%= group.introduction %></td>
-    <td><%= group.is_audited %></td>
     <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
     <td><%= link_to 'Manage', manage_groups_url(group) %></td>
   </tr>
 <% end %>

@@ -16,7 +16,7 @@ module ApplicationHelper
 
   def require_login
     if not current_user
-      store_location
+      #store_location
       flash[:notice] = "You must be logged in to access this page"
       redirect_to login_path
     end
@@ -45,12 +45,14 @@ module ApplicationHelper
 
   #check authority
   def require_publisher
-    @member = Member.first :conditions => ['profile_id = ?', current_user.profile.id]
-    redirect_to root_path if @member.authority < 2
+    @member = Member.where("profile_id = ? and group_id = ?", current_user.profile.id, params[:group_id]||params[:id]).first
+    flash[:notice] = "You can not access this page."
+    redirect_to root_path if @member.nil? || @member.authority < 2
   end
 
   def require_admin
-    @member = Member.where('profile_id = ?', current_user.profile.id).first
-    redirect_to root_path if @member.authority < 3
+    @member = Member.where("profile_id = ? and group_id = ?", current_user.profile.id, params[:group_id]||params[:id]).first
+    flash[:notice] = "You can not access this page."
+    redirect_to root_path if @member.nil? || @member.authority < 3
   end
 end

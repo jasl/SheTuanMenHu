@@ -4,7 +4,6 @@ class CreateContents < ActiveRecord::Migration
       t.references :group
       t.string :title
       t.string :author
-      t.string :source
       t.text :body
       t.boolean :allow_comment
       t.boolean :state

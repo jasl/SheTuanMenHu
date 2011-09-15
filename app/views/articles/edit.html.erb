@@ -2,5 +2,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', group_article_path(@article.group_id, @article) %> |
-<%= link_to 'Back', group_articles_path %>
+<%= link_to 'Back', manage_articles_groups_url(params[:id]) %>
