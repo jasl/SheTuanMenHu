@@ -42,4 +42,15 @@ module ApplicationHelper
   def empty_or_nil_field?(obj)
     !defined?obj or obj.blank?
   end
+
+  #check authority
+  def require_publisher
+    @member = Member.first :conditions => ['profile_id = ?', current_user.profile.id]
+    redirect_to root_path if @member.authority < 2
+  end
+
+  def require_admin
+    @member = Member.where('profile_id = ?', current_user.profile.id).first
+    redirect_to root_path if @member.authority < 3
+  end
 end
