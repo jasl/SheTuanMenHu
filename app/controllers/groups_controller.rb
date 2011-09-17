@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :require_admin, :only => [:edit, :update]
+  before_filter :require_login, :except => [:show, :index]
+  before_filter :permitted_group, :except => [:new, :create, :index]
   # GET /groups
   # GET /groups.json
   def index

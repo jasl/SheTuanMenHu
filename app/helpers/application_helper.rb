@@ -46,13 +46,27 @@ module ApplicationHelper
   #check authority
   def require_publisher
     @member = Member.where("profile_id = ? and group_id = ?", current_user.profile.id, params[:group_id]||params[:id]).first
-    flash[:notice] = "You can not access this page."
-    redirect_to root_path if @member.nil? || @member.authority < 2
+    if @member.nil? || @member.authority < 2
+      flash[:notice] = "You can not access this page."
+      redirect_to root_path
+    end
   end
 
   def require_admin
     @member = Member.where("profile_id = ? and group_id = ?", current_user.profile.id, params[:group_id]||params[:id]).first
-    flash[:notice] = "You can not access this page."
-    redirect_to root_path if @member.nil? || @member.authority < 3
+    if @member.nil? || @member.authority < 3
+      flash[:notice] = "You can not access this page."
+      redirect_to root_path
+    end
+
   end
+
+  def permitted_group
+    @group_audit = Group.select(:is_audited).find(params[:group_id]||params[:id])
+    if not @group_audit.is_audited?
+      flash[:notice] = "The Group need audit."
+      redirect_to root_path
+    end
+  end
+
 end

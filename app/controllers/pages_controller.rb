@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_filter :require_login, :except => [:show, :index]
+  before_filter :permitted_group
   before_filter :require_publisher, :except => [:show, :index]
 
   # GET /pages
@@ -48,7 +50,7 @@ class PagesController < ApplicationController
 
     @page.group_id = params[:group_id]
     @page.allow_comment=false
-
+    @page.state= true
     respond_to do |format|
       if @page.save
         format.html { redirect_to group_page_path(@page.group_id, @page.id), notice: 'Page was successfully created.' }

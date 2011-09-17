@@ -8,6 +8,8 @@ gem 'rails'
 gem 'sqlite3'
 #gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'
 
+#gem 'orm_adapter', :git => 'https://github.com/ianwhite/orm_adapter.git'
+
 gem 'authlogic'
 
 gem 'ckeditor'

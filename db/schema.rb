@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20110912183529) do
 
-  create_table "ckeditor_assets", :force => true do |t|
+  create_table "assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
     t.string   "data_content_type"
     t.integer  "data_file_size"
@@ -24,14 +24,13 @@ ActiveRecord::Schema.define(:version => 20110912183529) do
     t.datetime "updated_at"
   end
 
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
+  add_index "assets", ["assetable_type", "assetable_id"], :name => "idx_assetable"
+  add_index "assets", ["assetable_type", "type", "assetable_id"], :name => "idx_assetable_type"
 
   create_table "contents", :force => true do |t|
     t.integer  "group_id"
     t.string   "title"
     t.string   "author"
-    t.string   "source"
     t.text     "body"
     t.boolean  "allow_comment"
     t.boolean  "state"

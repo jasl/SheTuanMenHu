@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_filter :require_login, :except => [:show, :index]
+  before_filter :permitted_group
   before_filter :require_publisher, :except => [:show, :index]
 
   # GET /articles
@@ -47,6 +49,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(params[:article])
 
     @article.group_id = params[:group_id]
+    @article.state= true
 
     respond_to do |format|
       if @article.save
