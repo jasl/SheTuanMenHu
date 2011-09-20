@@ -15,4 +15,4 @@
   <%= raw @article.body %>
 </p>
 
-<%= link_to 'Back', group_articles_path %>
+<%= link_to 'Back', group_articles_path(@article.group.permalink) %>

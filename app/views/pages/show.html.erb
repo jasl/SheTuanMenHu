@@ -6,13 +6,8 @@
 </p>
 
 <p>
-  <b>Author:</b>
-  <%= @page.author %>
-</p>
-
-<p>
   <b>Body:</b>
   <%= raw @page.body %>
 </p>
 
-<%= link_to 'Back', group_pages_path %>
+<%= link_to 'Back', group_pages_path(@page.group.permalink) %>

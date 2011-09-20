@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.where(:state => true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,6 +19,10 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
 
+    if not @article.state?
+      redirect_to group_path @article.group.permalink if current_user and not Member.find_by_profile_id current_user.profile.id
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @article }
@@ -29,7 +33,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new.json
   def new
     @article = Article.new
-    @article.author = current_user.profile.name
+    @article.author = current_user.profile.name || ""
     @url = group_articles_path
     respond_to do |format|
       format.html # new.html.erb
@@ -53,7 +57,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to group_article_path(@article.group_id, @article.id), notice: 'Article was successfully created.' }
+        format.html { redirect_to manage_articles_groups_url @article.group.permalink, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
       else
         format.html { render action: "new" }
@@ -69,7 +73,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
-        format.html { redirect_to group_article_path(@article.group_id, @article.id), notice: 'Article was successfully updated.' }
+        format.html { redirect_to manage_articles_groups_url @article.group.permalink, notice: 'Article was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -85,7 +89,7 @@ class ArticlesController < ApplicationController
     @article.destroy
 
     respond_to do |format|
-      format.html { redirect_to group_article_url }
+      format.html { redirect_to manage_articles_groups_url @article.group.permalink  }
       format.json { head :ok }
     end
   end

@@ -10,42 +10,8 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :birthday %><br />
-    <%= f.date_select(:birthday, :include_blank => false, :start_year => 1980,
-                                               :end_year => Time.now.year - 10) %>
-  </div>
-  <div class="field">
-    <%= f.label :mobile %><br />
-    <%= f.text_field :mobile %>
-  </div>
-  <div class="field">
-    <%= f.label :qq %><br />
-    <%= f.text_field :qq %>
-  </div>
-  <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.radio_button :gender, 'male' %>Male
-    <%= f.radio_button :gender, 'female' %>Female
-  </div>
-  <div class="field">
-    <%= f.label :number %><br />
-    <%= f.text_field :number %>
-  </div>
-  <div class="field">
     <%= f.label :school %><br />
     <%= f.text_field :school %>
-  </div>
-  <div class="field">
-    <%= f.label :faculty %><br />
-    <%= f.text_field :faculty %>
-  </div>
-  <div class="field">
-    <%= f.label :profession %><br />
-    <%= f.text_field :profession %>
-  </div>
-  <div class="field">
-    <%= f.label :resume %><br />
-    <%= f.text_area :resume %>
   </div>
   <div class="actions">
     <%= f.submit %>

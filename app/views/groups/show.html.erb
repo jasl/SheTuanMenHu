@@ -25,10 +25,12 @@
   <%= @group.introduction %>
 </p>
 
+<%= render 'pages/pages', :pages => @pages %>
+
 <div>
   <p>Tasks:</p>
   <ul>
-    <li><%= link_to 'Show articles', group_articles_path(@group) %></li>
-    <li><%= link_to 'Show pages', group_pages_path(@group) %></li>
+    <li><%= link_to 'Show articles', group_articles_path(@group.permalink) %></li>
+    <li><%= link_to 'Show pages', group_pages_path(@group.permalink) %></li>
   </ul>
 </div>

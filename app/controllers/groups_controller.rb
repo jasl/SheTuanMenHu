@@ -16,7 +16,8 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    @group = Group.find(params[:id])
+    @group = get_group params[:id]
+    @pages = Page.where(:state => true)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,13 +38,13 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
-    @group = Group.find(params[:id])
+    @group = get_group params[:id]
   end
 
   # POST /groups
   # POST /groups.json
   def create
-    params[:group][:is_audited] = false
+    params[:group][:is_audited] = true # just for development
 
     @group = Group.new(params[:group])
 
@@ -62,7 +63,7 @@ class GroupsController < ApplicationController
   # PUT /groups/1
   # PUT /groups/1.json
   def update
-    @group = Group.find(params[:id])
+    @group = get_group params[:id]
 
     respond_to do |format|
       if @group.update_attributes(params[:group])

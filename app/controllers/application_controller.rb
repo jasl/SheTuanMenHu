@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
+
+  after_filter :group_id_to_permalink
+
   protect_from_forgery
 
   protected

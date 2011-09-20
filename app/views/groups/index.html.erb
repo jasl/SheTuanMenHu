@@ -13,11 +13,7 @@
     <td><%= group.name %></td>
     <td><%= group.school %></td>
     <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Manage', manage_groups_url(group) %></td>
+    <td><%= link_to 'Manage', manage_groups_url(group.permalink) %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Group', new_group_path %>

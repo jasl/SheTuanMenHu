@@ -3,15 +3,13 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Author</th>
     <th></th>
   </tr>
 
 <% @pages.each do |page| %>
   <tr>
     <td><%= page.title %></td>
-    <td><%= page.author %></td>
-    <td><%= link_to 'Show', group_page_path(page.group_id,page) %></td>
+    <td><%= link_to 'Show', group_page_path(page.group.permalink,page) %></td>
   </tr>
 <% end %>
 </table>

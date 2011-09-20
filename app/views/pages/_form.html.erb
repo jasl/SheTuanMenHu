@@ -1,14 +1,10 @@
-<%= javascript_include_tag "/javascripts/asset/asset.js" %>
+<%= javascript_include_tag "/javascripts/ckeditor/ckeditor.js" %>
 <%= form_for @page, :url => @url do |f| %>
   <%= render 'shared/error', :obj => @page %>
 
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :author %><br />
-    <%= f.text_field :author %>
   </div>
   <div class="field">
     <%= f.label :body %><br />

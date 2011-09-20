@@ -5,21 +5,21 @@ class ManageController < ApplicationController
   before_filter :permitted_group
 
   def articles
-    @articles = Article.all(:conditions => ['group_id = ?', params[:id]])
-    @group = params[:id]
+    @group = get_group params[:id]
+    @articles = Article.all(:conditions => ['group_id = ?', @group])
   end
 
   def pages
-    @pages = Page.all(:conditions => ['group_id = ?', params[:id]])
-    @group = params[:id]
+    @group = get_group params[:id]
+    @pages = Page.all(:conditions => ['group_id = ?', @group.id])
   end
 
   def index
-    @group = Group.find(params[:id])
+    @group = get_group params[:id]
   end
 
   def control
-
+     redirect_to root_path
   end
 
 end

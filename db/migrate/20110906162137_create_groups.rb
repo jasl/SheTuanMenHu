@@ -2,6 +2,7 @@ class CreateGroups < ActiveRecord::Migration
   def change
     create_table :groups do |t|
       t.string :name
+      t.string :permalink
       t.string :school
       t.string :slogan
       t.string :proclaim

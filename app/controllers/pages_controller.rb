@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    @pages = Page.all
+    @pages = Page.where(:state => true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,7 +18,9 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @page = Page.find(params[:id])
-
+    if not @page.state?
+      redirect_to group_path @page.group.permalink if current_user and not Member.find_by_profile_id current_user.profile.id
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @page }
@@ -29,7 +31,7 @@ class PagesController < ApplicationController
   # GET /pages/new.json
   def new
     @page = Page.new
-    @page.author = current_user.profile.name
+    @page.author = current_user.profile.name || ""
     @url = group_pages_path
     respond_to do |format|
       format.html # new.html.erb
@@ -53,7 +55,7 @@ class PagesController < ApplicationController
     @page.state= true
     respond_to do |format|
       if @page.save
-        format.html { redirect_to group_page_path(@page.group_id, @page.id), notice: 'Page was successfully created.' }
+        format.html { redirect_to manage_pages_groups_url @page.group.permalink, notice: 'Page was successfully created.' }
         format.json { render json: @page, status: :created, location: @content }
       else
         format.html { render action: "new" }
@@ -69,7 +71,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
-        format.html { redirect_to group_pages_path(@page.group_id, @page), notice: 'Page was successfully updated.' }
+        format.html { redirect_to manage_pages_groups_url @page.group.permalink, notice: 'Page was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -85,7 +87,7 @@ class PagesController < ApplicationController
     @page.destroy
 
     respond_to do |format|
-      format.html { redirect_to group_pages_url }
+      format.html { redirect_to manage_pages_groups_url @page.group.permalink }
       format.json { head :ok }
     end
   end

@@ -19,10 +19,10 @@ class UserSessionsController < ApplicationController
         @login_info = { :last_login_ip => request.remote_ip, :last_login_at => Time.now }
         UserSession.find.record.update_attributes @login_info
         format.html { redirect_back_or root_path }
-        format.xml  { render :xml => @user_session, :status => :created, :location => root_path }
+        format.json  { render :xml => @user_session, :status => :created, :location => root_path }
       else
         format.html { render :new}
-        format.xml  { render :xml => @user_session.errors, :status => :unprocessable_entity }
+        format.json  { render :xml => @user_session.errors, :status => :unprocessable_entity }
       end
     end
    end
@@ -33,7 +33,7 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to root_path, :notice => "You have already log outed" }
-      format.xml  { head :ok }
+      format.json  { head :ok }
     end
   end
 

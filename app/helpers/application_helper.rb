@@ -45,7 +45,14 @@ module ApplicationHelper
 
   #check authority
   def require_publisher
-    @member = Member.where("profile_id = ? and group_id = ?", current_user.profile.id, params[:group_id]||params[:id]).first
+    @id = params[:group_id] || params[:id]
+    if @id.to_i != 0
+      @member = Member.where("profile_id = ? and group_id = ?", current_user.profile.id, @id).first
+    else
+      @group_id = Group.select(:id).where(:permalink => @id).first
+      @member = Member.where("profile_id = ? and group_id = ?", current_user.profile.id, @group_id).first
+    end
+
     if @member.nil? || @member.authority < 2
       flash[:notice] = "You can not access this page."
       redirect_to root_path
@@ -53,7 +60,14 @@ module ApplicationHelper
   end
 
   def require_admin
-    @member = Member.where("profile_id = ? and group_id = ?", current_user.profile.id, params[:group_id]||params[:id]).first
+    @id = params[:group_id] || params[:id]
+    if @id.to_i != 0
+      @member = Member.where("profile_id = ? and group_id = ?", current_user.profile.id, @id).first
+    else
+      @group_id = Group.select(:id).where(:permalink => @id).first
+      @member = Member.where("profile_id = ? and group_id = ?", current_user.profile.id, @group_id).first
+    end
+
     if @member.nil? || @member.authority < 3
       flash[:notice] = "You can not access this page."
       redirect_to root_path
@@ -62,11 +76,29 @@ module ApplicationHelper
   end
 
   def permitted_group
-    @group_audit = Group.select(:is_audited).find(params[:group_id]||params[:id])
+    @id = params[:group_id] || params[:id]
+    if @id.to_i != 0
+      @group_audit = Group.select(:is_audited).find(@id)
+    else
+      @group_audit = Group.select(:is_audited).where(:permalink => @id).first
+    end
+
     if not @group_audit.is_audited?
       flash[:notice] = "The Group need audit."
       redirect_to root_path
     end
   end
 
+  def get_group key
+    if params[:id].to_i != 0
+      @group = Group.find(params[:id])
+    else
+      @group = Group.where(:permalink => params[:id]).first
+    end
+    @group || nil
+  end
+
+  def group_id_to_permalink
+    params[:group_id] = Group.select(:permalink).find params[:group_id] if params[:group_id] && params[:group_id].to_i != 0
+  end
 end
