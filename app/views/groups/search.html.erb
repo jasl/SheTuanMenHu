@@ -1,4 +1,4 @@
-<h1>Listing groups in <%= params[:school] %></h1>
+<h1>Listing groups</h1>
 <% @groups.each do |group| %>
   <div>
     <p><%= link_to "#{group.school} - #{group.name}", group_path(group.permalink) %></p>

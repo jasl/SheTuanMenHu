@@ -20,6 +20,9 @@ Website::Application.routes.draw do
   resources :profiles
   resources :users
 
+  #result
+  post '/search' => 'groups#search'
+
   #regist
   get '/register' => 'users#new'
   #login

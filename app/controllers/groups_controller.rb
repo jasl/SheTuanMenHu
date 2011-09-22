@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :require_admin, :only => [:edit, :update]
-  before_filter :require_login, :except => [:show, :index]
-  before_filter :permitted_group, :except => [:new, :create, :index]
+  before_filter :require_login, :except => [:show, :index, :search]
+  before_filter :permitted_group, :except => [:new, :create, :index, :search]
   before_filter :require_fulfill_profile, :only => [:new, :create]
 
   include GroupsHelper
@@ -86,6 +86,19 @@ class GroupsController < ApplicationController
   end
 
   def search
-
+    if not params[:school].blank? and not params[:name].blank?
+      begin
+        @group = Group.where(:school => params[:school], :name => params[:name], :is_audited => true).first
+        redirect_to group_path(@group.permalink)
+      rescue
+        redirect_to root_path, :notice => "There is no group in #{params[:school]} named #{params[:name]}."
+      end
+    end
+    if params[:school]
+      @groups = Group.where(:school => params[:school], :is_audited => true).page(params[:page])
+    end
+    if @groups.size == 0
+      redirect_to root_path,:notice => "There is no group in #{params[:school]}."
+    end
   end
 end

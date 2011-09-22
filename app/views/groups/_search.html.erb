@@ -1,0 +1,13 @@
+<%= form_tag search_path do |f| %>
+  <div class="field">
+    <%= label_tag :school %><br />
+    <%= text_field_tag 'school' %>
+  </div>
+  <div class="field">
+    <%= label_tag :name %><br />
+    <%= text_field_tag 'name' %>
+  </div>
+  <div class="actions">
+    <%= submit_tag 'Search' %>
+  </div>
+<% end %>

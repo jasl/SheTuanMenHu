@@ -2,7 +2,7 @@
   <h1><%= link_to 'Show all groups', groups_path %></h1>
 
   <% if !current_user %>
-    <p><%= render 'user_sessions/form' %></p>
+    <p><%= render 'groups/search' %></p>
     <p>Haven't a account yet? <%= link_to 'Regist Now!', register_path %></p>
   <% else %>
     <h2>My Groups:</h2>
