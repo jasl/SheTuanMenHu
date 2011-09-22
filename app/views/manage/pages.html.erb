@@ -4,7 +4,6 @@
   <tr>
     <th>Title</th>
     <th>Author</th>
-    <th>Type</th>
     <th>State</th>
     <th></th>
     <th></th>
@@ -15,7 +14,6 @@
   <tr>
     <td><%= page.title %></td>
     <td><%= page.author %></td>
-    <td><%= page.type %></td>
     <td><%= page.state %></td>
     <td><%= link_to 'Show', group_page_path(page.group_id,page) %></td>
     <td><%= link_to 'Edit', edit_group_page_path(page.group_id,page) %></td>
@@ -23,7 +21,7 @@
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @pages %>
 <br />
 
 <%= link_to 'New Page', new_group_page_path(@group) %>

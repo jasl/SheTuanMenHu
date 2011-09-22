@@ -3,16 +3,9 @@ class PagesController < ApplicationController
   before_filter :permitted_group
   before_filter :require_publisher, :except => [:show, :index]
 
-  # GET /pages
-  # GET /pages.json
-  def index
-    @pages = Page.where(:state => true)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @pages }
-    end
-  end
+  include GroupsHelper
+  before_filter :group_header, :only => [:show]
+  layout 'portal', :only => [:show]
 
   # GET /pages/1
   # GET /pages/1.json

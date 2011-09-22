@@ -6,12 +6,12 @@ class ManageController < ApplicationController
 
   def articles
     @group = get_group params[:id]
-    @articles = Article.all(:conditions => ['group_id = ?', @group])
+    @articles = Article.where(:group_id => @group.id).page(params[:page]).order('created_at DESC')
   end
 
   def pages
     @group = get_group params[:id]
-    @pages = Page.all(:conditions => ['group_id = ?', @group.id])
+    @pages = Page.where(:group_id => @group.id).page(params[:page]).order('created_at DESC')
   end
 
   def index

@@ -2,6 +2,12 @@ class GroupsController < ApplicationController
   before_filter :require_admin, :only => [:edit, :update]
   before_filter :require_login, :except => [:show, :index]
   before_filter :permitted_group, :except => [:new, :create, :index]
+  before_filter :require_fulfill_profile, :only => [:new, :create]
+
+  include GroupsHelper
+  before_filter :group_header, :only => [:show]
+  layout 'portal', :only => [:show]
+
   # GET /groups
   # GET /groups.json
   def index
@@ -16,12 +22,13 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    @group = get_group params[:id]
-    @pages = Page.where(:state => true)
+    #@group = get_group params[:id]
+    #@pages = Page.where(:state => true)
+    @articles = Article.order("created_at DESC").where(:group_id => @group.id).limit(5)
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @group }
+      format.json { render json: get_group(params[:id]) }
     end
   end
 
@@ -29,6 +36,7 @@ class GroupsController < ApplicationController
   # GET /groups/new.json
   def new
     @group = Group.new
+    @group.school = current_user.profile.school
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,6 +54,7 @@ class GroupsController < ApplicationController
   def create
     params[:group][:is_audited] = true # just for development
 
+    params[:group][:school] = current_user.profile.school
     @group = Group.new(params[:group])
 
     respond_to do |format|
@@ -67,7 +76,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
-        format.html { redirect_to manage_groups_url @group.id, notice: 'Group was successfully updated.' }
+        format.html { redirect_to manage_groups_url @group.permalink, notice: 'Group was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -76,4 +85,7 @@ class GroupsController < ApplicationController
     end
   end
 
+  def search
+
+  end
 end

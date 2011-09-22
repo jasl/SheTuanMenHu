@@ -1,2 +1,3 @@
 class Article < Content
+
 end

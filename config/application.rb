@@ -49,5 +49,7 @@ module Website
     config.assets.version = '1.0'
 
     ActiveRecord::IdentityMap.enabled = true
+
+    WillPaginate.per_page = 10
   end
 end

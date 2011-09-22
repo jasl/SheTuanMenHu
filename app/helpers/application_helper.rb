@@ -23,11 +23,7 @@ module ApplicationHelper
   end
 
   def require_not_login
-	redirect_to root_path if current_user
-  end
-
-  def require_fulfill_profile
-    defined?UserSession.find.profile
+	  redirect_to root_path if current_user
   end
 
   def redirect_back_or(path)
@@ -40,7 +36,15 @@ module ApplicationHelper
   end
 
   def empty_or_nil_field?(obj)
-    !defined?obj or obj.blank?
+    defined?obj and obj.blank?
+  end
+
+  def require_fulfill_profile
+    @profile = current_user.profile
+    if @profile.name.blank? or @profile.school.blank?
+      flash[:notice] = "You must fulfill your profile first."
+      redirect_to my_profile_path
+    end
   end
 
   #check authority

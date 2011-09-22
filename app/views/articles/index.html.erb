@@ -1,19 +1,20 @@
-<h1>Listing articles</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Date</th>
-    <th></th>
-  </tr>
-
-<% @articles.each do |article| %>
-  <tr>
-    <td><%= article.title %></td>
-    <td><%= article.author %></td>
-    <td><%= article.created_at %></td>
-    <td><%= link_to 'Show', group_article_path(article.group.permalink, article.id) %></td>
-  </tr>
-<% end %>
-</table>
+<div>
+  <% 0.upto(1) do %>
+    <% @article = @articles.shift %>
+    <div>
+      <h4><%= link_to @article.title, group_article_path(@group.permalink, @article.id) %></h4>
+      <span>[<%= @article.created_at.strftime('%Y-%m-%d %H:%M:%S') %>]<%= @article.author %></span>
+      <p>
+        <%= raw @article.body %>
+      </p>
+    </div>
+  <% end %>
+  <div>
+    <% @articles.each do |article| %>
+      <div>
+        <h4><%= link_to "[#{article.created_at.strftime('%Y-%m-%d %H:%M:%S')}]#{article.title}", group_article_path(@group.permalink, article.id) %></h4>
+      </div>
+    <% end %>
+  </div>
+  <%= will_paginate @articles %>
+</div>

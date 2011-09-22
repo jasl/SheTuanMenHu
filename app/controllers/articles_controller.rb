@@ -3,10 +3,14 @@ class ArticlesController < ApplicationController
   before_filter :permitted_group
   before_filter :require_publisher, :except => [:show, :index]
 
+  include GroupsHelper
+  before_filter :group_header, :except => [:index]
+  layout 'portal', :except => [:index]
+
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.where(:state => true)
+    @articles = Article.where(:state => true, :group_id => @group.id).page(params[:page]).order('created_at DESC').to_a
 
     respond_to do |format|
       format.html # index.html.erb
