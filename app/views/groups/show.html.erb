@@ -1,5 +1,6 @@
 <div><%= @group.proclaim %></div>
 <div>
+<% if @articles.size > 0 %>
   <% 1.upto(2) do %>
     <% @article = @articles.shift %>
     <div>
@@ -18,4 +19,7 @@
     <% end %>
     <div><%= link_to "more news...", group_articles_path(@group.permalink,{ :page => '2'}) %></div>
   </div>
+<% else %>
+   <p>There is no article yet.</p>
+<% end %>
 </div>

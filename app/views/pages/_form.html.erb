@@ -1,5 +1,6 @@
 <%= javascript_include_tag "/javascripts/ckeditor/ckeditor.js" %>
 <%= form_for @page, :url => @url do |f| %>
+  <p id="notice"><%= notice %></p>
   <%= render 'shared/error', :obj => @page %>
 
   <div class="field">

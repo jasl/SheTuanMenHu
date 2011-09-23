@@ -1,5 +1,6 @@
 <div>
-  <% 0.upto(1) do %>
+  <% if @articles.size > 0 %>
+    <% 0.upto(1) do %>
     <% @article = @articles.shift %>
     <div>
       <h4><%= link_to @article.title, group_article_path(@group.permalink, @article.id) %></h4>
@@ -17,4 +18,8 @@
     <% end %>
   </div>
   <%= will_paginate @articles %>
+  <% else %>
+    <p>There is no article yet.</p>
+  <% end %>
+
 </div>

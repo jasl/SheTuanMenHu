@@ -24,7 +24,7 @@ qq.extend = function(first, second){
 
 /**
  * Searches for a given element in the array, returns -1 if it is not present.
- * @param {Number} [from] The index at which to begin the result
+ * @param {Number} [from] The index at which to begin the search
  */
 qq.indexOf = function(arr, elt, from){
     if (arr.indexOf) return arr.indexOf(elt, from);

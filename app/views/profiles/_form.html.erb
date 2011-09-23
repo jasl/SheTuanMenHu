@@ -1,4 +1,5 @@
 <%= form_for @profile ? @profile : @profile = Profile.new do |f| %>
+  <p id="notice"><%= notice %></p>
   <%= render 'shared/error', :obj => @user %>
 
   <div class="field">

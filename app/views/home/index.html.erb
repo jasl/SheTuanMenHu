@@ -1,14 +1,14 @@
 <div>
-  <h1><%= link_to 'Show all groups', groups_path %></h1>
+  <p><%= link_to 'Show all groups', groups_path %></p>
 
   <% if !current_user %>
     <p><%= render 'groups/search' %></p>
-    <p>Haven't a account yet? <%= link_to 'Regist Now!', register_path %></p>
+    <p>Haven't a account yet? <%= link_to 'Sign up now!', register_path %></p>
   <% else %>
     <h2>My Groups:</h2>
       <ul>
         <% @groups.each do |p, g| %>
-          <li><%= link_to g.name, group_path(g.permalink) %> | <%= link_to 'Manage',manage_groups_url(g.permalink) if p.to_i > 1 %></li>
+          <li><%= link_to p.name, group_path(p.permalink) %> | <%= link_to 'Manage',manage_groups_url(p.permalink) if g.to_i > 1 %></li>
         <% end %>
       </ul>
     <h2>Task:</h2>
