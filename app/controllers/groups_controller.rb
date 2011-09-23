@@ -11,11 +11,24 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @groups }
+    if not params[:school].blank? and not params[:name].blank?
+      begin
+        @group = Group.where(:school => params[:school], :name => params[:name], :is_audited => true).first
+        redirect_to group_path(@group.permalink)
+      rescue
+        redirect_to root_path, :notice => "There is no group in #{params[:school]} named #{params[:name]}."
+      end
+    else
+      if params[:school]
+        @groups = Group.where(:school => params[:school], :is_audited => true).page(params[:page])
+        redirect_to root_path,:notice => "There is no group in #{params[:school]}." if @groups.size == 0
+      else
+        @groups = Group.all
+      end
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @groups }
+      end
     end
   end
 
@@ -85,20 +98,4 @@ class GroupsController < ApplicationController
     end
   end
 
-  def search
-    if not params[:school].blank? and not params[:name].blank?
-      begin
-        @group = Group.where(:school => params[:school], :name => params[:name], :is_audited => true).first
-        redirect_to group_path(@group.permalink)
-      rescue
-        redirect_to root_path, :notice => "There is no group in #{params[:school]} named #{params[:name]}."
-      end
-    end
-    if params[:school]
-      @groups = Group.where(:school => params[:school], :is_audited => true).page(params[:page])
-    end
-    if @groups.size == 0
-      redirect_to root_path,:notice => "There is no group in #{params[:school]}."
-    end
-  end
 end

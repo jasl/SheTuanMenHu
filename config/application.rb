@@ -50,6 +50,6 @@ module Website
 
     ActiveRecord::IdentityMap.enabled = true
 
-    WillPaginate.per_page = 10
+    WillPaginate.per_page = 5
   end
 end

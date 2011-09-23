@@ -21,7 +21,7 @@ Website::Application.routes.draw do
   resources :users
 
   #result
-  post '/search' => 'groups#search'
+  post '/search' => 'groups#index'
 
   #regist
   get '/register' => 'users#new'
