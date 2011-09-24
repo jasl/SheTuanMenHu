@@ -14,6 +14,10 @@
     <%= f.label :introduction %><br />
     <%= f.text_field :introduction %>
   </div>
+  <div class="field">
+    <%= f.label :theme %><br />
+    <%= f.select :theme, {:default => 'default', :test => 'test'}, {:include_blank => false} %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

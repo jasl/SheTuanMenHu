@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110912183529) do
+ActiveRecord::Schema.define(:version => 20110934123456) do
 
   create_table "assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20110912183529) do
     t.boolean  "is_audited"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "theme",        :default => "default"
   end
 
   create_table "members", :force => true do |t|

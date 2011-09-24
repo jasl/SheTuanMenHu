@@ -4,8 +4,8 @@ class PagesController < ApplicationController
   before_filter :require_publisher, :except => [:show, :index]
 
   include GroupsHelper
-  before_filter :group_header, :only => [:show]
-  layout 'portal', :only => [:show]
+  before_filter :set_group_template, :only => [:show]
+  layout :theme_layout
 
   # GET /pages/1
   # GET /pages/1.json

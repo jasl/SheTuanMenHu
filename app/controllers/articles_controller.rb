@@ -4,8 +4,8 @@ class ArticlesController < ApplicationController
   before_filter :require_publisher, :except => [:show, :index]
 
   include GroupsHelper
-  before_filter :group_header, :only => [:index, :show]
-  layout 'portal', :only => [:index, :show]
+  before_filter :set_group_template, :only => [:index, :show]
+  layout :theme_layout
 
   # GET /articles
   # GET /articles.json

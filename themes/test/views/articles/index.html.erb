@@ -1,7 +1,7 @@
-<div><%= @group.proclaim %></div>
 <div>
-<% if @articles.size > 0 %>
-  <% 1.upto(2) do %>
+  <% if @articles.size > 0 %>
+    <% 0.upto(1) do %>
+    <% break if @articles.size == 0 %>
     <% @article = @articles.shift %>
     <div>
       <h4><%= link_to @article.title, group_article_path(@group.permalink, @article.id) %></h4>
@@ -17,9 +17,10 @@
         <h4><%= link_to "[#{article.created_at.strftime('%Y-%m-%d %H:%M:%S')}]#{article.title}", group_article_path(@group.permalink, article.id) %></h4>
       </div>
     <% end %>
-    <div><%= link_to "more news...", group_articles_path(@group.permalink,{ :page => '2'}) %></div>
-  </div>
-<% else %>
-   <p>There is no article yet.</p>
-<% end %>
+    </div>
+    <%= will_paginate @articles %>
+  <% else %>
+    <p>There is no article yet.</p>
+  <% end %>
+
 </div>

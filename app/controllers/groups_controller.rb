@@ -5,8 +5,8 @@ class GroupsController < ApplicationController
   before_filter :require_fulfill_profile, :only => [:new, :create]
 
   include GroupsHelper
-  before_filter :group_header, :only => [:show]
-  layout 'portal', :only => [:show]
+  before_filter :set_group_template, :only => [:show]
+  layout :theme_layout, :only => [:show]
 
   # GET /groups
   # GET /groups.json

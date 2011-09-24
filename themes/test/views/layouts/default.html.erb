@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @group.name %> - <%= @group.school %></title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="header">
+    <div id="logo">
+        <h3><%= @group.school %></h3>
+        <h1><%= link_to @group.name, group_path(@group.permalink) %></h1>
+        <h2><%= @group.slogan if not @group.slogan.blank? %></h2>
+    </div>
+    <div id="menu">
+      <ul>
+        <li class="page_item <%# 'current_page_item' if (controller.controller_name == 'groups' and controller.action_name == 'show') %>">
+            <%= link_to 'Index', group_path(@group.permalink) %>
+        </li>
+        <li class="page_item <%# 'current_page_item' if (controller.controller_name == 'articles') %>">
+            <%= link_to 'Articles', group_articles_path(@group.permalink) %>
+        </li>
+        <% @pages.each do |page| %>
+        <li class="page_item <%# 'current_page_item' if (controller.controller_name == 'articles' and params[:id] = page.id) %>">
+          <%= link_to page.title, group_page_path(page.group.permalink,page) %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+</div>
+<div>
+  <%= yield %>
+</div>
+<div>
+  <%= render 'layouts/footer' %>
+</div>
+</body>
+</html>
