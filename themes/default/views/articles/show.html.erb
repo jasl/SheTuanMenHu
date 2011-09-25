@@ -1,14 +1,9 @@
-<p>
-  <b>Title:</b>
-  <%= @article.title %>
-</p>
-
-<p>
-  <b>Author:</b>
-  <%= @article.author %>
-</p>
-
-<p>
-  <b>Body:</b>
-  <%= raw @article.body %>
-</p>
+<div class="atomentry" id="page-<%= @article.id %>">
+  <h2 class="title"><%= @article.title %></h2>
+  <div class="content">
+    <%= raw @article.body %>
+  </div>
+  <div class="meta">
+    <p><%= @article.created_at.strftime('%Y-%m-%d %H:%M:%S') %> <%= @article.author %></p>
+  </div>
+</div>

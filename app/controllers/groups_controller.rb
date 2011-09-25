@@ -18,17 +18,15 @@ class GroupsController < ApplicationController
       rescue
         redirect_to root_path, :notice => "There is no group in #{params[:school]} named #{params[:name]}."
       end
+    elsif not params[:school].blank?
+      @groups = Group.where(:school => params[:school], :is_audited => true).page(params[:page])
+      redirect_to root_path,:notice => "There is no group in #{params[:school]}." if @groups.size == 0
     else
-      if params[:school]
-        @groups = Group.where(:school => params[:school], :is_audited => true).page(params[:page])
-        redirect_to root_path,:notice => "There is no group in #{params[:school]}." if @groups.size == 0
-      else
-        @groups = Group.all
-      end
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @groups }
-      end
+      @groups = Group.all
+    end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @groups }
     end
   end
 
@@ -97,5 +95,4 @@ class GroupsController < ApplicationController
       end
     end
   end
-
 end

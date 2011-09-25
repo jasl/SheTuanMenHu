@@ -50,6 +50,8 @@ module Website
 
     ActiveRecord::IdentityMap.enabled = true
 
+    #Rails.application.config.assets.paths.push "#{::Rails.root.to_s}/themes/"
+
     WillPaginate.per_page = 5
   end
 end

@@ -1,26 +1,28 @@
-<div><%= @group.proclaim %></div>
-<div>
 <% if @articles.size > 0 %>
-  <% 1.upto(2) do %>
-    <% break if @articles.size == 0 %>
-    <% @article = @articles.shift %>
-    <div>
-      <h4><%= link_to @article.title, group_article_path(@group.permalink, @article.id) %></h4>
-      <span>[<%= @article.created_at.strftime('%Y-%m-%d %H:%M:%S') %>]<%= @article.author %></span>
-      <p>
-        <%= raw @article.body %>
-      </p>
-    </div>
-  <% end %>
-  <div>
-    <% @articles.each do |article| %>
-      <div>
-        <h4><%= link_to "[#{article.created_at.strftime('%Y-%m-%d %H:%M:%S')}]#{article.title}", group_article_path(@group.permalink, article.id) %></h4>
-      </div>
+    <% 0.upto(1) do %>
+        <% break if @articles.size == 0 %>
+        <% @article = @articles.shift %>
+        <div class="atomentry" id="page-<%= @article.id %>">
+          <h2 class="title"><%= link_to @article.title, group_article_path(@group.permalink, @article.id) %></h2>
+          <div class="content">
+            <%= raw @article.body %>
+          </div>
+          <div class="meta">
+             <p class="author">[<%= @article.created_at.strftime('%Y-%m-%d %H:%M:%S') %>]<%= @article.author %></p>
+          </div>
+        </div>
+        <% end %>
+        <% @articles.each do |article| %>
+          <div class="preview" id="page-<%= article.id %>">
+            <h2 class="title"><%= link_to article.title, group_article_path(@group.permalink, article.id) %></h2>
+            <div class="meta">
+              <p>[<%= article.created_at.strftime('%Y-%m-%d %H:%M:%S') %>]<%= article.author %></p>
+            </div>
+          </div>
     <% end %>
-    <div><%= link_to "more news...", group_articles_path(@group.permalink,{ :page => '2'}) %></div>
-  </div>
+    <div id="paginate">
+        <p><%= link_to "More news...", group_articles_path(@group.permalink,{ :page => '2'}) %></p>
+    </div>
 <% else %>
-   <p>There is no article yet.</p>
+    <p>There is no article yet.</p>
 <% end %>
-</div>

@@ -1,39 +1,60 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title><%= @group.name %> - <%= @group.school %></title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+  <title><%= @group.school %> - <%= @group.name %></title>
+  <%= stylesheet_link_tag '/themes/default/stylesheets/application.css', :media => 'all' %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-<div id="header">
-    <div id="logo">
-        <h3><%= @group.school %></h3>
-        <h1><%= link_to @group.name, group_path(@group.permalink) %></h1>
-        <p><%= @group.slogan if not @group.slogan.blank? %></p>
+    <div id="header">
+        <div id="logo">
+            <h1><%= link_to @group.name, group_path(@group.permalink) %></h1>
+            <h2><%= @group.slogan if not @group.slogan.blank? %></h2>
+        </div>
+        <div id="menu">
+            <ul>
+                <li class="page_item <%= 'current_page_item' if (controller.controller_name == "groups" and controller.action_name == "show") %>">
+                    <%= link_to 'Index', group_path(@group.permalink) %>
+                </li>
+                <li class="page_item <%= 'current_page_item' if (controller.controller_name == 'articles' and controller.action_name == 'index') %>">
+                    <%= link_to 'Articles', group_articles_path(@group.permalink) %>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div id="menu">
-      <ul>
-        <li class="page_item <%# 'current_page_item' if (controller.controller_name == 'groups' and controller.action_name == 'show') %>">
-            <%= link_to 'Index', group_path(@group.permalink) %>
-        </li>
-        <li class="page_item <%# 'current_page_item' if (controller.controller_name == 'articles') %>">
-            <%= link_to 'Articles', group_articles_path(@group.permalink) %>
-        </li>
+    <!-- end header -->
+
+  <div id="page">
+    <div id="content">
+      <%= yield %>
+    </div>
+
+    <div id="sidebar">
+      <!-- sidebar components -->
+      <h3>Pages</h3>
+      <ul id="pages">
         <% @pages.each do |page| %>
         <li class="page_item <%# 'current_page_item' if (controller.controller_name == 'articles' and params[:id] = page.id) %>">
           <%= link_to page.title, group_page_path(page.group.permalink,page) %>
         </li>
         <% end %>
-      </ul>
+    </ul>
     </div>
-</div>
-<div>
-  <%= yield %>
-</div>
-<div>
-  <%= render 'layouts/footer' %>
-</div>
+    <br style="clear:both;" />
+  </div>
+
+  <div id="footer">
+        <div class="wrap">
+        <p id="legal">
+            Designed by NodeThirtyThree ported to typo by http://www.nodethirtythree.com/
+            <br />
+            Powered by typo
+        </p>
+        </div>
+  </div>
+    <div>
+      <%= render 'layouts/footer' %>
+    </div>
 </body>
 </html>
