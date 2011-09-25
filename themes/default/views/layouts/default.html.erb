@@ -17,7 +17,7 @@
                 <li class="page_item <%= 'current_page_item' if (controller.controller_name == "groups" and controller.action_name == "show") %>">
                     <%= link_to 'Index', group_path(@group.permalink) %>
                 </li>
-                <li class="page_item <%= 'current_page_item' if (controller.controller_name == 'articles' and controller.action_name == 'index') %>">
+                <li class="page_item <%= 'current_page_item' if (controller.controller_name != 'groups')%>">
                     <%= link_to 'Articles', group_articles_path(@group.permalink) %>
                 </li>
             </ul>
