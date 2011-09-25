@@ -5,7 +5,8 @@
     <%= link_to 'Profile', my_profile_path %> |
     <%= link_to 'Change password', password_path %> |
   <% else %>
-    <%= link_to 'Log in', login_path %>
+    <%= link_to 'Log in', login_path %> |
+    <%= link_to 'Sign up', register_path %> |
   <% end %>
-  | <%= link_to 'Index', root_path %>
+  <%= link_to 'Index', root_path %>
 </div>
