@@ -20,7 +20,6 @@ h1 {
 
 h2 {
 	font-size: 20px;
-    padding-top: 10px
 }
 
 p, ul, ol {
@@ -94,7 +93,7 @@ input, textarea, select {
 }
 
 #logo h1 {
-	font-size: 38px;
+	font-size: 35px;
 	color: #494949;
 }
 
@@ -108,7 +107,6 @@ input, textarea, select {
 }
 
 #logo h2 {
-	margin-top: -10px;
 	font-size: 12px;
 	color: #A0A0A0;
 }
