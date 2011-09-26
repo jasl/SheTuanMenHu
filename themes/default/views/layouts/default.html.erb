@@ -3,6 +3,7 @@
 <head>
   <title><%= @group.school %> - <%= @group.name %></title>
   <%= stylesheet_link_tag '/themes/default/stylesheets/application.css', :media => 'all' %>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <%= csrf_meta_tags %>
 </head>
 
@@ -39,7 +40,7 @@
           <%= link_to page.title, group_page_path(page.group.permalink,page) %>
         </li>
         <% end %>
-    </ul>
+      </ul>
     </div>
     <br style="clear:both;" />
   </div>
@@ -49,7 +50,7 @@
         <p id="legal">
             Designed by NodeThirtyThree ported to typo by http://www.nodethirtythree.com/
             <br />
-            Powered by typo
+            Powered by Shetuanmenhu & Jasl.
         </p>
         </div>
   </div>

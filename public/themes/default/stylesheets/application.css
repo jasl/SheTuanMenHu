@@ -2,7 +2,7 @@ body {
 	margin: 100px 0 0 0;
 	padding: 0;
 	background: #FFFFFF url(/themes/default/images/img01.gif) repeat-x;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	/*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
 	font-size: 13px;
 	color: #333333;
 }
@@ -12,6 +12,7 @@ h1, h2, h3 {
 	text-transform: lowercase;
 	font-weight: normal;
 	color: #3E3E3E;
+    font-family: SimHEI;
 }
 
 h1 {
@@ -407,7 +408,7 @@ html>body #footer {
 	padding-left: 70px;
 }
 
- bottom;
+#bottom{
 	font-size: 16px;
 	color: #FFFFFF;
 }
@@ -472,7 +473,7 @@ html>body #footer {
 #paginate {
   clear: both;
   border-top: #00567A 3px solid;
-  width: 650px;
+  width: 575px;
   text-align: right;
   margin-top: 20px;
   padding-top: 10px;
@@ -481,13 +482,4 @@ html>body #footer {
 #paginate p {
   text-align: right;
     font-size: 15px;
-}
-
-.Proclaim {
-    background-color: #F8F8F8;
-    border: 1px solid silver;
-    color: #110000;
-}
-.Proclaim pre {
-    margin: 0;
 }
