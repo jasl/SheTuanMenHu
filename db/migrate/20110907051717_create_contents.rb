@@ -4,7 +4,7 @@ class CreateContents < ActiveRecord::Migration
       t.references :group
       t.string :title
       t.string :author
-      t.string :category
+      t.integer :category
       t.text :body
       t.boolean :allow_comment
       t.boolean :state
@@ -16,6 +16,6 @@ class CreateContents < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :contents, :group_id
+    add_index :contents, :group_id, :category
   end
 end

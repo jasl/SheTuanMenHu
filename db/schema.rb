@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20110934123456) do
     t.integer  "group_id"
     t.string   "title"
     t.string   "author"
+    t.string   "category"
     t.text     "body"
     t.boolean  "allow_comment"
     t.boolean  "state"
