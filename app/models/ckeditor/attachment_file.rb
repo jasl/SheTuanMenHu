@@ -1,5 +1,5 @@
-class Ckeditor::AttachmentFile < Asset::AttachmentFile
+class Ckeditor::AttachmentFile < Attachment::File
   def self.sti_name
-    "Asset::AttachmentFile"
+    "Attachment::File"
   end
 end

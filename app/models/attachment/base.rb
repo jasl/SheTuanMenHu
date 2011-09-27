@@ -1,4 +1,4 @@
-class Asset::BaseAsset < ActiveRecord::Base
+class Attachment::Base < ActiveRecord::Base
   include Ckeditor::Orm::ActiveRecord::AssetBase
   include Ckeditor::Backend::Paperclip
 

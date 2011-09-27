@@ -12,9 +12,9 @@ Website::Application.routes.draw do
     end
   end
 
-  namespace :asset, :only => [:index, :create, :destroy] do
-    #resources :pictures
-    #resources :attachment_files
+  namespace :attachment, :only => [:index, :create, :destroy] do
+    resources :pictures
+    resources :files
   end
 
   resources :profiles

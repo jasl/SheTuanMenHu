@@ -32,8 +32,7 @@ class ApplicationController < ActionController::Base
         prepend_view_path "#{::Rails.root.to_s}/themes/#{ @group.theme }/views"
         return "layouts/default.html.erb"
       end
-      prepend_view_path "#{::Rails.root.to_s}/themes/default/views"
-      "layouts/default.html.erb"
+      'application'
     end
 =begin
   def ckeditor_filebrowser_scope(options = {})

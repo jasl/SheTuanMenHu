@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(:version => 20110934123456) do
     t.string   "permalink"
     t.string   "school"
     t.string   "slogan"
-    t.string   "proclaim"
     t.string   "introduction"
     t.boolean  "is_audited"
     t.datetime "created_at"
@@ -65,6 +64,8 @@ ActiveRecord::Schema.define(:version => 20110934123456) do
 
   add_index "members", ["authority"], :name => "index_members_on_authority"
   add_index "members", ["group_id"], :name => "index_members_on_group_id"
+  add_index "members", ["is_audited"], :name => "index_members_on_is_audited"
+  add_index "members", ["profile_id"], :name => "index_members_on_profile_id"
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"

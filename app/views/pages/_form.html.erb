@@ -8,6 +8,10 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
+    <%= f.label :category %><br />
+    <%= f.select :category, {'介绍' => 'introduction', '其他' => 'other'}, {:include_blank => false} %>
+  </div>
+  <div class="field">
     <%= f.label :body %><br />
     <%= cktext_area_tag("page[body]", @page.body, :input_html => {:cols => 10, :rows => 20}) %>
   </div>

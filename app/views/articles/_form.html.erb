@@ -12,6 +12,10 @@
     <%= f.text_field :author %>
   </div>
   <div class="field">
+    <%= f.label :category %><br />
+    <%= f.select :category, {'新闻' => 'news', '公告' => 'notice', '预告' => 'preview'}, {:include_blank => false} %>
+  </div>
+  <div class="field">
     <%= f.label :body %><br />
     <%= cktext_area_tag("article[body]", @article.body, :input_html => {:cols => 10, :rows => 20}) %>
   </div>

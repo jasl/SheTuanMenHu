@@ -1,6 +1,6 @@
-class Ckeditor::Picture < Asset::Picture
+class Ckeditor::Picture < Attachment::Picture
   def self.sti_name
-    "Asset::Picture"
+    "Attachment::Picture"
   end
 end
 

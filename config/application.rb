@@ -18,7 +18,7 @@ module Website
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
-    config.autoload_paths += %W(#{config.root}/app/models/asset)
+    config.autoload_paths += %W(#{config.root}/app/models/attachment)
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
@@ -42,7 +42,7 @@ module Website
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
-    # Enable the asset pipeline
+    # Enable the attachment pipeline
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
