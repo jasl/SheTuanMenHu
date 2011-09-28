@@ -32,8 +32,6 @@
     </div>
 
     <div id="sidebar">
-      <!-- sidebar components -->
-      <h3>Pages</h3>
       <ul id="pages">
         <% @pages.each do |page| %>
         <li class="page_item <%# 'current_page_item' if (controller.controller_name == 'articles' and params[:id] = page.id) %>">

@@ -1,6 +1,6 @@
-class CreateAssets < ActiveRecord::Migration
+class CreateResources < ActiveRecord::Migration
   def self.up
-    create_table :assets do |t|
+    create_table :resources do |t|
       t.string  :data_file_name, :null => false
       t.string  :data_content_type
       t.integer :data_file_size
@@ -16,11 +16,11 @@ class CreateAssets < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index "assets", ["assetable_type", "type", "assetable_id"], :name => "idx_assetable_type"
-		add_index "assets", ["assetable_type", "assetable_id"], :name => "idx_assetable"
+    add_index "resources", ["assetable_type", "type", "assetable_id"], :name => "idx_assetable_type"
+		add_index "resources", ["assetable_type", "assetable_id"], :name => "idx_assetable"
   end
 
   def self.down
-    drop_table :assets
+    drop_table :resources
   end
 end

@@ -16,6 +16,6 @@ class CreateContents < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :contents, :group_id, :category
+    add_index :contents, :group_id
   end
 end
