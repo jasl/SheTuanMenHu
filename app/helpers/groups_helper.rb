@@ -7,7 +7,9 @@ module GroupsHelper
     else
       @group = Group.where(:permalink => @g).first
     end
-    @pages = Page.order('category DESC').where(:state => true, :group_id => @group.id)
+    @category_pages = {10 => [], 11 => [], 12 => []}
+    Page.order('category DESC').where(:state => true, :group_id => @group.id).each do |page|
+      @category_pages[page.category].push page
+    end
   end
-
 end

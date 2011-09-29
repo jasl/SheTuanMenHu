@@ -3,57 +3,70 @@
 <head>
   <title><%= @group.school %> - <%= @group.name %></title>
   <%= stylesheet_link_tag '/themes/default/stylesheets/application.css', :media => 'all' %>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-    <div id="header">
-        <div id="logo">
-            <h1><%= link_to @group.name, group_path(@group.permalink) %></h1>
-            <h2><%= @group.slogan if not @group.slogan.blank? %></h2>
-        </div>
-        <div id="menu">
-            <ul>
-                <li class="page_item <%= 'current_page_item' if (controller.controller_name == "groups" and controller.action_name == "show") %>">
-                    <%= link_to 'Home', group_path(@group.permalink) %>
-                </li>
-                <li class="page_item <%= 'current_page_item' if (controller.controller_name != 'groups')%>">
-                    <%= link_to 'Articles', group_articles_path(@group.permalink) %>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- end header -->
+<div id="header">
+  <div id="logo">
+    <h1><%= link_to @group.name, group_path(@group.permalink) %></h1>
 
-  <div id="page">
-    <div id="content">
-      <%= yield %>
-    </div>
+    <h2><%= @group.slogan if not @group.slogan.blank? %></h2>
+  </div>
+  <div id="menu">
+    <ul>
+      <li class="page_item <%= 'current_page_item' if (controller.controller_name == "groups" and controller.action_name == "show") %>">
+        <%= link_to '主页', group_path(@group.permalink) %>
+      </li>
+      <li class="page_item <%= 'current_page_item' if (controller.controller_name != 'groups') %>">
+        <%= link_to '新闻', group_articles_path(@group.permalink) %>
+      </li>
+    </ul>
+  </div>
+</div>
 
+<div id="page">
+  <div id="content">
+    <%= yield %>
+  </div>
+
+  <div id="sidebar">
     <div id="sidebar">
-      <ul id="pages">
-        <% @pages.each do |page| %>
-        <li class="page_item <%# 'current_page_item' if (controller.controller_name == 'articles' and params[:id] = page.id) %>">
-          <%= link_to page.title, group_page_path(page.group.permalink,page) %>
-        </li>
-        <% end %>
-      </ul>
+      <% @category_pages.each do |category, pages| %>
+          <% next if pages.size == 0 %>
+          <% case category %>
+      <% when 10 %>
+              <h3>社团介绍</h3>
+          <% when 11 %>
+              <h3>部门介绍</h3>
+          <% when 12 %>
+              <h3>其他</h3>
+          <% end %>
+          <ul id="pages">
+            <% pages.each do |page| %>
+                <li>
+                  <%= link_to page.title, group_page_path(page.group.permalink, page) %>
+                </li>
+            <% end %>
+          </ul>
+      <% end %>
     </div>
-    <br style="clear:both;" />
   </div>
+  <br style="clear:both;"/>
+</div>
 
-  <div id="footer">
-        <div class="wrap">
-        <p id="legal">
-            Designed by NodeThirtyThree ported to typo by http://www.nodethirtythree.com/
-            <br />
-            Powered by Shetuanmenhu & Jasl.
-        </p>
-        </div>
+<div id="footer">
+  <div class="wrap">
+    <p id="legal">
+      Designed by NodeThirtyThree ported to typo by http://www.nodethirtythree.com/
+      <br/>
+      Powered by Shetuanmenhu & Jasl.
+    </p>
   </div>
-    <div>
-      <%= render 'layouts/footer' %>
-    </div>
+</div>
+<div>
+  <%= render 'layouts/footer' %>
+</div>
 </body>
 </html>

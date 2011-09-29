@@ -42,10 +42,10 @@ class PagesController < ApplicationController
   # POST /pages.json
   def create
     @page = Page.new(params[:page])
-
+    #@page.author = current_user.profile.name || ""
     @page.group_id = params[:group_id]
     @page.allow_comment=false
-    @page.state= true
+    #@page.state= true
     respond_to do |format|
       if @page.save
         format.html { redirect_to manage_pages_groups_url @page.group.permalink, notice: 'Page was successfully created.' }

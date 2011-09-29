@@ -75,7 +75,7 @@ legend {
 }
 
 input, textarea, select {
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	/*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
 	font-size: 13px;
 	color: #333333;
 }
@@ -284,13 +284,15 @@ h2.title {
 #sidebar {
 	float: right;
 	width: 195px;
+    background: url(/themes/default/images/img03.gif) repeat-y;
 }
 
 #sidebar ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
+    margin-left: 15px;
 }
 
 #sidebar li li {
@@ -302,6 +304,7 @@ h2.title {
 	background: url(/themes/default/images/img03.gif) repeat-x left bottom;
 	font-size: 16px;
 	font-weight: bold;
+    margin-left: 10px;
 }
 
 /* Search */

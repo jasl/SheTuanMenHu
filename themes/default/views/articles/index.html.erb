@@ -21,9 +21,9 @@
           </div>
     <% end %>
     <div id="paginate">
-        <%= will_paginate @articles %>
+        <%= will_paginate @articles, :previous_label => "上一页", :next_label => "下一页" %>
     </div>
 <% else %>
-    <p>There is no article yet.</p>
+    <p>还没有发布新闻。</p>
 <% end %>
 

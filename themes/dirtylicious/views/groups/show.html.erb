@@ -23,8 +23,8 @@
           </div>
     <% end %>
     <div id="paginate">
-        <p><%= link_to "More news...", group_articles_path(@group.permalink,{ :page => '2'}) %></p>
+        <p><%= link_to "更多...", group_articles_path(@group.permalink,{ :page => '2'}) %></p>
     </div>
 <% else %>
-    <p>There is no article yet.</p>
+    <p>还没有发布新闻。</p>
 <% end %>

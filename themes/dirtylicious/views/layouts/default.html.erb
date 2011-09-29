@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   <title><%= @group.school %> - <%= @group.name %></title>
   <%= stylesheet_link_tag '/themes/dirtylicious/stylesheets/application.css', :media => 'all' %>
   <%= csrf_meta_tags %>
@@ -9,51 +9,62 @@
 
 <body>
 <div class="outer-container">
-	<div class="inner-container">
-  	<div class="header">
-			<div class="title">
-    		<h1 class="sitename"><%= link_to @group.name, group_path(@group.permalink) %></h1>
-    		<div class="slogan"><%= @group.slogan if not @group.slogan.blank? %></div>
-			</div>
-  	</div>
+  <div class="inner-container">
+    <div class="header">
+      <div class="title">
+        <h1 class="sitename"><%= link_to @group.name, group_path(@group.permalink) %></h1>
+
+        <div class="slogan"><%= @group.slogan if not @group.slogan.blank? %></div>
+      </div>
+    </div>
     <div class="path">
-        <ul>
-            <li class="page_item <%= 'current_page_item' if (controller.controller_name == "groups" and controller.action_name == "show") %>">
-                    <%= link_to 'Home', group_path(@group.permalink) %>
-            </li>
-            <li class="page_item <%= 'current_page_item' if (controller.controller_name != 'groups')%>">
-                <%= link_to 'Articles', group_articles_path(@group.permalink) %>
-            </li>
-        </ul>
+      <ul>
+        <li class="page_item <%= 'current_page_item' if (controller.controller_name == "groups" and controller.action_name == "show") %>">
+          <%= link_to 'Home', group_path(@group.permalink) %>
+        </li>
+        <li class="page_item <%= 'current_page_item' if (controller.controller_name != 'groups') %>">
+          <%= link_to 'Articles', group_articles_path(@group.permalink) %>
+        </li>
+      </ul>
     </div>
 
-  	<div class="main">
-    	<div id="content">
-      	<%= yield %>
-    	</div>
-    	<div id="sidebar">
-            <h3>Pages</h3>
-            <ul id="pages">
-            <% @pages.each do |page| %>
-            <li class="page_item <%# 'current_page_item' if (controller.controller_name == 'articles' and params[:id] = page.id) %>">
-              <%= link_to page.title, group_page_path(page.group.permalink,page) %>
-            </li>
+    <div class="main">
+      <div id="content">
+        <%= yield %>
+      </div>
+      <div id="sidebar">
+        <% @category_pages.each do |category, pages| %>
+            <% next if pages.size == 0 %>
+            <% case category %>
+                <% when 10 %>
+                    <h3>社团介绍</h3>
+                <% when 11 %>
+                    <h3>部门介绍</h3>
+                <% when 12 %>
+                    <h3>其他</h3>
             <% end %>
+            <ul id="pages">
+              <% pages.each do |page| %>
+                  <li class="page_item <%# 'current_page_item' if (controller.controller_name == 'articles' and params[:id] = page.id) %>">
+                    <%= link_to page.title, group_page_path(page.group.permalink, page) %>
+                  </li>
+              <% end %>
             </ul>
-    	</div>
-    	<br style="clear:both;" />
-  	</div>
+        <% end %>
+      </div>
+      <br style="clear:both;"/>
+    </div>
 
-  	<div id="footer">
-    	<div class="left"><%= link_to @group.name, group_path(@group.permalink) %></div>
-			<div class="right">
-                "Designed by Dirtylicious ported to typo by http://templates.arcsin.se/
-                <br />
-                Powered by Shetuanmenhu & Jasl.
-			</div>
-			<div class="clearer"></div>
-  	    </div>
-	</div>
+    <div id="footer">
+      <div class="left"><%= link_to @group.name, group_path(@group.permalink) %></div>
+      <div class="right">
+        "Designed by Dirtylicious ported to typo by http://templates.arcsin.se/
+        <br/>
+        Powered by Shetuanmenhu & Jasl.
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </div>
 </div>
 </body>
 </html>
