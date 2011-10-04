@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
         return "layouts/default.html.erb"
       end
     end
-=begin
+
   def ckeditor_filebrowser_scope(options = {})
     super
     {
@@ -25,5 +25,5 @@ class ApplicationController < ActionController::Base
         :assetable_type => 'User'
     }.merge(options)
   end
-=end
+
 end
