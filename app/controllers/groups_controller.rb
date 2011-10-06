@@ -5,6 +5,7 @@ class GroupsController < ApplicationController
   before_filter :require_fulfill_profile, :only => [:new, :create]
 
   include GroupsHelper
+  before_filter :group_permalink_to_id, :only => [:show]
   before_filter :set_group_template, :only => [:show]
   layout :theme_layout
 

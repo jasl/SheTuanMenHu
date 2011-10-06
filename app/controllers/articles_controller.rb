@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   before_filter :require_publisher, :except => [:show, :index]
 
   include GroupsHelper
+  before_filter :group_permalink_to_id
   before_filter :set_group_template, :only => [:index, :show]
   layout :theme_layout
 
@@ -23,8 +24,8 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
 
-    if not @article.state?
-      redirect_to group_path @article.group.permalink if current_user and not Member.find_by_profile_id current_user.profile.id
+    if @article.nil? or not @article.state? or @article.group.id != @group.id
+      redirect_to group_path @group.permalink if not (current_user && Member.find_by_profile_id(current_user.profile.id))
     end
 
     respond_to do |format|
@@ -90,11 +91,19 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.json
   def destroy
     @article = Article.find(params[:id])
-    @article.destroy
 
-    respond_to do |format|
-      format.html { redirect_to manage_articles_groups_url @article.group.permalink  }
-      format.json { head :ok }
+    if @article.group.id == params[:group_id]
+      @article.destroy
+      respond_to do |format|
+        format.html { redirect_to manage_articles_groups_url @article.group.permalink  }
+        format.json { head :ok }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to root_path   }
+        format.json { head :method_not_allowed }
+      end
     end
+
   end
 end

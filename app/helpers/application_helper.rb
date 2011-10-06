@@ -102,7 +102,4 @@ module ApplicationHelper
     @group || nil
   end
 
-  def group_id_to_permalink
-    params[:group_id] = Group.select(:permalink).find params[:group_id] if params[:group_id] && params[:group_id].to_i != 0
-  end
 end

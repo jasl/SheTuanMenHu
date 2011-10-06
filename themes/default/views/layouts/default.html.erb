@@ -10,6 +10,8 @@
 <body>
 <div id="header">
   <div id="logo">
+    <h3><%= @group.school %></h3>
+
     <h1><%= link_to @group.name, group_path(@group.permalink) %></h1>
 
     <h2><%= @group.slogan if not @group.slogan.blank? %></h2>

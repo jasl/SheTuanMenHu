@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   before_filter :require_publisher, :except => [:show, :index]
 
   include GroupsHelper
+  before_filter :group_permalink_to_id
   before_filter :set_group_template, :only => [:show]
   layout :theme_layout
 
@@ -11,8 +12,8 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @page = Page.find(params[:id])
-    if not @page.state?
-      redirect_to group_path @page.group.permalink if current_user and not Member.find_by_profile_id current_user.profile.id
+    if @page.nil? or not @page.state? or @page.group.id != @group.id
+      redirect_to group_path @group.permalink if not (current_user && Member.find_by_profile_id(current_user.profile.id))
     end
     respond_to do |format|
       format.html # show.html.erb
@@ -35,7 +36,7 @@ class PagesController < ApplicationController
   # GET /pages/1/edit
   def edit
     @page = Page.find(params[:id])
-    @url = group_page_path @page.group_id, @page.id
+    @url = group_page_path @page.group.permalink, @page.id
   end
 
   # POST /pages
@@ -77,11 +78,18 @@ class PagesController < ApplicationController
   # DELETE /pages/1.json
   def destroy
     @page = Page.find(params[:id])
-    @page.destroy
 
-    respond_to do |format|
-      format.html { redirect_to manage_pages_groups_url @page.group.permalink }
-      format.json { head :ok }
+    if @page.group.id == params[:group_id]
+      @page.destroy
+      respond_to do |format|
+        format.html { redirect_to manage_pages_groups_url @page.group.permalink }
+        format.json { head :ok }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to root_path  }
+        format.json { head :method_not_allowed }
+      end
     end
   end
 end

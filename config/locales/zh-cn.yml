@@ -9,3 +9,7 @@ zh-cn:
       cancel: "取消"
       upload: "上传"
       delete: "删除"
+
+  will_paginate:
+    next_label: "下一页"
+    previous_label: "上一页"
