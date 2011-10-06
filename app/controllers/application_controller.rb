@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
     def theme_layout
       #if File.exists? "#{::Rails.root.to_s}/themes/#{ @group.theme }/views/layouts/default.html.erb"
-      if action_name == "show" or (controller_name != "group" && action_name == "index")
+      if action_name == "show" or (controller_name != "groups" && action_name == "index")
         prepend_view_path "#{::Rails.root.to_s}/themes/#{ @group.theme }/views"
         return "layouts/default.html.erb"
       end
