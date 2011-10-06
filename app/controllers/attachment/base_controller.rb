@@ -1,6 +1,8 @@
 class Attachment::BaseController < ApplicationController
   respond_to :html, :json
+  layout "ckeditor"
 
+  #before_filter :set_locale
   before_filter :find_asset, :only => [:destroy]
 
   protected
@@ -26,5 +28,12 @@ class Attachment::BaseController < ApplicationController
       else
         render :nothing => true
       end
+    end
+
+    def attachments_scope(options = {})
+      {
+          :assetable_id => current_user.id,
+          :assetable_type => 'User'
+      }.merge(options)
     end
 end

@@ -1,5 +1,10 @@
 class Attachment::FilesController < Attachment::BaseController
 
+  def index
+    @attachments = Attachment::File.where(attachments_scope)
+    respond_with(@attachments)
+  end
+
   def create
     @attachment = Attachment::File.new
 	  respond_with_asset(@attachment)

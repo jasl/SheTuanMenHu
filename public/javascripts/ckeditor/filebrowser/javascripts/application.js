@@ -169,7 +169,7 @@ qq.extend(qq.FileUploaderInput.prototype, {
             qq.addClass(item, this._classes.success);
             
             asset.size = this._formatSize(asset.size);
-            asset.controller = (asset.type.toLowerCase() == "ckeditor::picture" ? "pictures" : "attachment_files");
+            asset.controller = (asset.type.toLowerCase() == "attachment::picture" ? "pictures" : "files");
             
             $(item).replaceWith($(this._options.template_id).tmpl(asset));
         } else {
@@ -189,7 +189,7 @@ qq.extend(qq.FileUploaderInput.prototype, {
             format_created_at: '',
             url_content: "#",
             controller: "assets",
-            url_thumb: "/javascripts/ckeditor/filebrowser/images/preloader.gif"
+            url_thumb: "/javascripts/ckeditor1/filebrowser/images/preloader.gif"
           };
           
           var item = $(this._options.template_id)

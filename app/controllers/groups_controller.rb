@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
 
   include GroupsHelper
   before_filter :set_group_template, :only => [:show]
-  layout :theme_layout, :only => [:show]
+  layout :theme_layout
 
   # GET /groups
   # GET /groups.json
