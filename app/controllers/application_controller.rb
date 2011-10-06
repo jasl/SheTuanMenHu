@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
+=begin
   def ckeditor_filebrowser_scope(options = {})
     super
     {
@@ -25,5 +26,6 @@ class ApplicationController < ActionController::Base
         :assetable_type => 'User'
     }.merge(options)
   end
+=end
 
 end
