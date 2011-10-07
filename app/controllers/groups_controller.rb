@@ -34,8 +34,6 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    #@group = get_group params[:id]
-    #@pages = Page.where(:state => true)
     @articles = Article.order("created_at DESC").where(:group_id => @group.id).limit(5)
 
     respond_to do |format|
