@@ -14,7 +14,7 @@ module GroupsHelper
       @group = Group.where(:permalink => @g).first
     end
 =end
-    @group = Group.where(params[:group_id]).first
+    @group = Group.find(params[:group_id])
     @category_pages = {10 => [], 11 => [], 12 => []}
     Page.order('category DESC').where(:state => true, :group_id => @group.id).each do |page|
       @category_pages[page.category].push page

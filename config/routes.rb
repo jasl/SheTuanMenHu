@@ -12,6 +12,12 @@ Website::Application.routes.draw do
     end
   end
 
+=begin
+  namespace :attachment, :only => [:index, :create, :destroy] do
+    resources :pictures
+    resources :files
+  end
+=end
   namespace :attachment, :only => [:index, :create, :destroy] do
     resources :pictures
     resources :files

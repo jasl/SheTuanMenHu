@@ -1,3 +1,4 @@
+<% @title = @article.title %>
 <div class="atomentry" id="page-<%= @article.id %>">
   <h2 class="title"><%= @article.title %></h2>
   <div class="content">
@@ -5,5 +6,6 @@
   </div>
   <div class="meta">
     <p><%= @article.created_at.strftime('%Y-%m-%d %H:%M:%S') %> <%= @article.author %></p>
+    <xn:share-button type="button_count_top" label="分享到人人"></xn:share-button>
   </div>
 </div>
