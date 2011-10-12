@@ -34,7 +34,8 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    @articles = Article.order("created_at DESC").where(:group_id => @group.id).limit(5)
+    @articles = Article.order("created_at DESC").where(:group_id => params[:group_id]).limit(5)
+    @count = Article.where(:group_id => params[:group_id]).count
 
     respond_to do |format|
       format.html # show.html.erb

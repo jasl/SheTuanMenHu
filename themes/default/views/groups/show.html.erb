@@ -20,9 +20,11 @@
             </div>
           </div>
     <% end %>
-    <div id="paginate">
-        <p><%= link_to "更多...", group_articles_path(@group.permalink,{ :page => '2'}) %></p>
-    </div>
+    <% if @count > 5 %>
+        <div id="paginate">
+            <p><%= link_to "更多...", group_articles_path(@group.permalink,{ :page => '2'}) %></p>
+        </div>
+    <% end %>
 <% else %>
     <p>还没有发布新闻。</p>
 <% end %>
