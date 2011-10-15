@@ -94,12 +94,13 @@ module ApplicationHelper
   end
 
   def get_group key
-    if params[:id].to_i != 0
-      @group = Group.find(params[:id])
+    @id = params[:group_id] || params[:id]
+    if @id.to_i != 0
+      @group = Group.find(@id)
     else
-      @group = Group.where(:permalink => params[:id]).first
+      @group = Group.where(:permalink => @id).first
     end
-    @group || nil
+    @group
   end
 
 end

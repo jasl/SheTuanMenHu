@@ -1,2 +1,4 @@
 <h1>Manage#control</h1>
-<p>Find me in app/views/manage/control.html.erb</p>
+<% @members.each do |member| %>
+  <div><%= member.profile.name %></div>
+<% end %>

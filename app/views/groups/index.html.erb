@@ -1,6 +1,15 @@
 <h1>Listing groups in <%= params[:school] %></h1>
 <% @groups.each do |group| %>
   <div>
-    <p><%= link_to "#{group.school} - #{group.name}", group_path(group.permalink) %></p>
+    <h1><%= link_to "#{group.school} #{group.name}", group_path(group.permalink) %></h1>
+    <p>简介：</p>
+    <p><%= group.introduction %></p>
+    <div id="join">
+        <% if not current_user %>
+            注册后可以申请加入
+        <% elsif %>
+            <%= link_to "申请加入", group_join_path(group.permalink),:remote => true if  Member.where(:group_id => group.id, :profile_id => current_user.profile.id).first.nil? %>
+        <% end %>
+    </div>
   </div>
 <% end %>

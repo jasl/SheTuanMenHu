@@ -20,4 +20,5 @@ module GroupsHelper
       @category_pages[page.category].push page
     end
   end
+
 end
