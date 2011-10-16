@@ -6,6 +6,7 @@ gem 'rails'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+#gem 'mysql2'
 #gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'
 
 #gem 'orm_adapter', :git => 'https://github.com/ianwhite/orm_adapter.git'
