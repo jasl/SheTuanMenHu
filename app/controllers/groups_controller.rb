@@ -69,7 +69,7 @@ class GroupsController < ApplicationController
     @group = Group.new(params[:group])
 
     respond_to do |format|
-      if @group.save and Member.create! :authority => 3, :is_audited => true, :profile_id => current_user.profile.id, :group_id => @group.id
+      if @group.save and Member.create! :authority => 3, :profile_id => current_user.profile.id, :group_id => @group.id
         format.html { redirect_to root_path, notice: 'Group was successfully created. Need audit' }
         format.json { render json: @group, status: :created, location: @group }
       else
