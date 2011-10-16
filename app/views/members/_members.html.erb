@@ -1,0 +1,26 @@
+<div>
+  <%= form_tag(group_modify_members_path(params[:permalink]), :remote => true, :id => 'modify') %>
+  <table>
+    <tr>
+      <th>姓名</th>
+      <th>权限</th>
+      <th>操作</th>
+    </tr>
+       <% @members.each do |member| %>
+          <tr>
+            <td><%= member.profile.name %></td>
+            <td>
+              <%= select_tag "[members][#{member.id}][authority]",
+                             "<option value='0'#{" selected='selected'" if member.authority == 0}>等待审核</option><option value='1'#{" selected='selected'" if member.authority == 1}>成员</option><option value='2'#{" selected='selected'" if member.authority == 2}>编辑</option><option value='3'#{" selected='selected'" if member.authority == 3}>管理员</option>".html_safe,
+                             {:include_blank => false, :disabled => member.profile.id == current_user.profile.id} %>
+            </td>
+            <td>
+              <%= link_to('Destroy',group_member_path(params[:permalink], member.id) , confirm: 'Are you sure?', method: :delete) if not member.profile.id == current_user.profile.id %>
+            </td>
+          </tr>
+       <% end %>
+  </table>
+  <div>
+    <%= submit_tag %>
+  </div>
+</div>

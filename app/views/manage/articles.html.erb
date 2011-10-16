@@ -15,9 +15,9 @@
     <td><%= article.title %></td>
     <td><%= article.author %></td>
     <td><%= article.state %></td>
-    <td><%= link_to 'Show', group_article_path(article.group_id,article) %></td>
-    <td><%= link_to 'Edit', edit_group_article_path(article.group_id,article) %></td>
-    <td><%= link_to 'Destroy', group_article_path(article.group_id,article), confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', group_article_path(params[:permalink],article) %></td>
+    <td><%= link_to 'Edit', edit_group_article_path(params[:permalink],article) %></td>
+    <td><%= link_to 'Destroy', group_article_path(params[:permalink],article), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
@@ -25,5 +25,5 @@
 
 <br />
 
-<%= link_to 'New Article', new_group_article_path(@group) %><br/>
-<%= link_to 'Manage Home', manage_groups_url(params[:group_id]) %>
+<%= link_to 'New Article', new_group_article_path(params[:permalink]) %><br/>
+<%= link_to 'Manage Home', manage_groups_url(params[:permalink]) %>

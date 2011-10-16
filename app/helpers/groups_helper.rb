@@ -2,6 +2,7 @@ module GroupsHelper
 
   def group_permalink_to_id
     @permalink = params[:group_id] || params[:id]
+    params[:permalink] = @permalink
     params[:group_id] = Group.select(:id).where(:permalink => @permalink).first.id if @permalink.to_i == 0
   end
 

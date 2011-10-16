@@ -3,7 +3,6 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Author</th>
     <th>State</th>
     <th></th>
     <th></th>
@@ -13,16 +12,15 @@
 <% @pages.each do |page| %>
   <tr>
     <td><%= page.title %></td>
-    <td><%= page.author %></td>
     <td><%= page.state %></td>
-    <td><%= link_to 'Show', group_page_path(page.group_id,page) %></td>
-    <td><%= link_to 'Edit', edit_group_page_path(page.group_id,page) %></td>
-    <td><%= link_to 'Destroy', group_page_path(page.group_id,page), confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', group_page_path(params[:permalink],page) %></td>
+    <td><%= link_to 'Edit', edit_group_page_path(params[:permalink],page) %></td>
+    <td><%= link_to 'Destroy', group_page_path(params[:permalink],page), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 <%= will_paginate @pages %>
 <br />
 
-<%= link_to 'New Page', new_group_page_path(@group) %><br/>
-<%= link_to 'Manage Home', manage_groups_url(params[:group_id]) %>
+<%= link_to 'New Page', new_group_page_path(params[:permalink]) %><br/>
+<%= link_to 'Manage Home', manage_groups_url(params[:permalink]) %>

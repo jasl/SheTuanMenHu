@@ -1,15 +1,9 @@
 Website::Application.routes.draw do
 
-  get "members/create"
-
-  get "members/destroy"
-
-  get "members/update"
-
   resources :groups do
     resources :articles
     resources :pages, :except => [:index]
-    resources :members, :only => [:create, :destroy, :update]
+    resources :members, :only => [:new, :create, :destroy]
 
     collection do
         match ":id/manage/articles" => 'manage#articles', :as => :manage_articles
@@ -18,6 +12,7 @@ Website::Application.routes.draw do
         match ":id/manage/control" => 'manage#control', :as => :manage_control
     end
     get '/join' => 'members#join', :as => :join
+    post '/modify_members' => 'members#modify', :as => :modify_members
   end
 
 =begin
