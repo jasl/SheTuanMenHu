@@ -2,8 +2,8 @@
 
 <table>
   <tr>
-    <th>Title</th>
-    <th>State</th>
+    <th>标题</th>
+    <th>是否显示？</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,15 +12,15 @@
 <% @pages.each do |page| %>
   <tr>
     <td><%= page.title %></td>
-    <td><%= page.state %></td>
-    <td><%= link_to 'Show', group_page_path(params[:permalink],page) %></td>
-    <td><%= link_to 'Edit', edit_group_page_path(params[:permalink],page) %></td>
-    <td><%= link_to 'Destroy', group_page_path(params[:permalink],page), confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= page.state?'是':'否' %></td>
+    <td><%= link_to '显示', group_page_path(params[:permalink],page) %></td>
+    <td><%= link_to '编辑', edit_group_page_path(params[:permalink],page) %></td>
+    <td><%= link_to '删除', group_page_path(params[:permalink],page), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 <%= will_paginate @pages %>
 <br />
 
-<%= link_to 'New Page', new_group_page_path(params[:permalink]) %><br/>
-<%= link_to 'Manage Home', manage_groups_url(params[:permalink]) %>
+<%= link_to '新建介绍页', new_group_page_path(params[:permalink]) %><br/>
+<%= link_to '社团管理首页', manage_groups_url(params[:permalink]) %>

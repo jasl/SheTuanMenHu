@@ -2,9 +2,9 @@
 
 <table>
   <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>State</th>
+    <th>标题</th>
+    <th>作者</th>
+    <th>是否显示？</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,10 +14,10 @@
   <tr>
     <td><%= article.title %></td>
     <td><%= article.author %></td>
-    <td><%= article.state %></td>
-    <td><%= link_to 'Show', group_article_path(params[:permalink],article) %></td>
-    <td><%= link_to 'Edit', edit_group_article_path(params[:permalink],article) %></td>
-    <td><%= link_to 'Destroy', group_article_path(params[:permalink],article), confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= article.state?'是':'否' %></td>
+    <td><%= link_to '查看', group_article_path(params[:permalink],article) %></td>
+    <td><%= link_to '编辑', edit_group_article_path(params[:permalink],article) %></td>
+    <td><%= link_to '删除', group_article_path(params[:permalink],article), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
@@ -25,5 +25,5 @@
 
 <br />
 
-<%= link_to 'New Article', new_group_article_path(params[:permalink]) %><br/>
-<%= link_to 'Manage Home', manage_groups_url(params[:permalink]) %>
+<%= link_to '新建文章', new_group_article_path(params[:permalink]) %><br/>
+<%= link_to '社团管理首页', manage_groups_url(params[:permalink]) %>

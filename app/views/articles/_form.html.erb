@@ -4,23 +4,23 @@
   <%= render 'shared/error', :obj => @article %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    标题<br />
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :author %><br />
+    作者<br />
     <%= f.text_field :author %>
   </div>
   <div class="field">
-    <%= f.label :category %><br />
-    <%= f.select :category, {'新闻' => 1, '公告' => 2, '预告' => 3}, {:include_blank => false} %>
+    分类<br />
+    <%= f.select :category, {'动态' => 1, '公告' => 2, '预告' => 3}, {:include_blank => false} %>
   </div>
   <div class="field">
-    <%= f.label :body %><br />
+    正文<br />
     <%= cktext_area_tag("article[body]", @article.body, :input_html => {:cols => 10, :rows => 20}) %>
   </div>
   <div class="field">
-    <%= f.label :state %><br />
+    是否可见<br />
     <%= f.check_box :state, :checked => true %>
   </div>
   <div class="actions">

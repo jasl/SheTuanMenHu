@@ -4,19 +4,19 @@
   <%= render 'shared/error', :obj => @page %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    标题<br />
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :category %><br />
+    分类<br />
     <%= f.select :category, {'社团介绍' => 10,'组织介绍' => 11, '其他' => 12}, {:include_blank => false} %>
   </div>
   <div class="field">
-    <%= f.label :body %><br />
+    正文<br />
     <%= cktext_area_tag("page[body]", @page.body, :input_html => {:cols => 10, :rows => 20}) %>
   </div>
   <div class="field">
-    <%= f.label :state %><br />
+    是否显示<br />
     <%= f.check_box :state, :checked => true %>
   </div>
   <div class="actions">
