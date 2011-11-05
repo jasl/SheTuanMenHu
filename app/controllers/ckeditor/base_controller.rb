@@ -1,4 +1,4 @@
-class Attachment::BaseController < ApplicationController
+class Ckeditor::BaseController < ApplicationController
   respond_to :html, :json
   layout "ckeditor"
 
